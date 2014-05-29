@@ -1,3 +1,5 @@
+#Please open PR's against [this repo](https://github.com/groupon/DotCi), instead of here.
+
 ##DotCi - Jenkins github integration, .ci.yml.
  ![Commit status](docs/screenshots/logos/jenkins.png) **+** ![Commit status](docs/screenshots/logos/github.png) **+** ![Commit status](docs/screenshots/logos/docker.png)
 ***
