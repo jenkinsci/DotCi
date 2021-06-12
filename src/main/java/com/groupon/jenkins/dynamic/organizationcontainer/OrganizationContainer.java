@@ -38,7 +38,6 @@ import hudson.model.Descriptor;
 import hudson.model.Hudson;
 import hudson.model.Job;
 import hudson.model.View;
-import hudson.util.CaseInsensitiveComparator;
 import hudson.util.CopyOnWriteMap;
 import hudson.util.CopyOnWriteMap.Tree;
 import hudson.views.DefaultViewsTabBar;
@@ -71,7 +70,7 @@ import com.groupon.jenkins.github.services.AuthenticationService;
 
 public class OrganizationContainer extends AbstractItem implements IdentifableItemGroup<DynamicProject>, ViewGroup, TopLevelItem, StaplerOverridable, StaplerFallback, StaplerProxy {
 
-	private transient Map<String, DynamicProject> items = new CopyOnWriteMap.Tree<String, DynamicProject>(CaseInsensitiveComparator.INSTANCE);
+	private transient Map<String, DynamicProject> items = new CopyOnWriteMap.Tree<String, DynamicProject>(String.CASE_INSENSITIVE_ORDER);
 	private transient ItemGroupMixIn mixin;
 
 	private CopyOnWriteArrayList<View> views;
@@ -127,7 +126,7 @@ public class OrganizationContainer extends AbstractItem implements IdentifableIt
 
 	private Tree<String, DynamicProject> getJobsForThisContainer() {
 		Iterable<DynamicProject> projects = new DynamicProjectRepository().getProjectsForOrg(this);
-		Tree<String, DynamicProject> itemMap = new CopyOnWriteMap.Tree<String, DynamicProject>(CaseInsensitiveComparator.INSTANCE);
+		Tree<String, DynamicProject> itemMap = new CopyOnWriteMap.Tree<String, DynamicProject>(String.CASE_INSENSITIVE_ORDER);
 		for (DynamicProject dbBackedProject : projects) {
 			itemMap.put(dbBackedProject.getName(), dbBackedProject);
 		}
